@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+    <link rel="stylesheet" type="text/css" th:href="@{add.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Add Student</h1>
+        <form th:action="@{/add}" th:object="${student}" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" required />
+            
+            <label for="rollNumber">Roll Number:</label>
+            <input type="text" id="rollNumber" th:field="*{rollNumber}" required />
+            
+            <label for="standard">Standard:</label>
+            <input type="text" id="standard" th:field="*{standard}" required />
+            
+            <label for="grade">Grade:</label>
+            <input type="text" id="grade" th:field="*{grade}" required/>
+            
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" th:field="*{gender}" required/>
+            
+            <button type="submit">Add</button>
+        </form>
+        <a th:href="@{/}">Back</a>
+    </div>
+</body>
+</html>

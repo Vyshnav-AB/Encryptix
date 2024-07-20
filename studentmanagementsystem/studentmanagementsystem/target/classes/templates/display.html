@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <link rel="stylesheet" type="text/css" th:href="@{display.css}">
+</head>
+<body>
+<table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Roll Number</th>
+                <th>Standard</th>
+                <th>Grade</th>
+                <th>Gender</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.id}">ID</td>
+                <td th:text="${student.name}">Name</td>
+                <td th:text="${student.rollNumber}">Roll Number</td>
+                <td th:text="${student.standard}">Standard</td>
+                <td th:text="${student.grade}">Grade</td>
+                <td th:text="${student.gender}">Gender</td>
+                <td>
+                    <a th:href="@{'/edit/' + ${student.id}}">Edit</a> | 
+                    <a th:href="@{'/delete/' + ${student.id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        <a th:href="@{/}">Back</a>
+</body>
+</html>
