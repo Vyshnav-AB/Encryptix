@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Number Guessing Game</title>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+	<div class="container">
+		<h1>Number Guessing Game</h1>
+		<div th:if="${gameState != null}">
+			<div class="info">
+				<p>
+					<strong>Username:</strong> <span th:text="${gameState.username}"></span>
+				</p>
+				<p th:text="${gameState.message}"></p>
+				<div th:if="${!gameState.isGameOver}">
+					<form th:action="@{/guess}" method="post">
+						<label for="guess">Enter your guess:</label> <input type="number"
+							id="guess" name="guess" required>
+						<button type="submit">Guess</button>
+					</form>
+					<p>
+						Attempts: <span th:text="${gameState.attempts}"></span>/<span
+							th:text="${gameState.maxAttempts}"></span>
+					</p>
+				</div>
+				<div th:if="${gameState.isGameOver}">
+					<p>
+						<strong>Score:</strong> <span th:text="${gameState.score}"></span>
+					</p>
+					<p>
+						<strong>Rounds Won:</strong> <span
+							th:text="${gameState.roundsWon}"></span>
+					</p>
+					<p>
+						<strong>Rounds Failed:</strong> <span
+							th:text="${gameState.roundsFailed}"></span>
+					</p>
+					<form th:action="@{/start}" method="post">
+						<label for="username">Enter your Username:</label> <input
+							type="text" id="username" name="username" required> <label
+							for="maxAttempts">Max Attempts:</label> <input type="number"
+							id="maxAttempts" name="maxAttempts" required>
+						<button type="submit">Start New Game</button>
+					</form>
+				</div>
+				<form th:action="@{/reset}" method="post">
+					<button type="submit">Reset Game</button>
+				</form>
+			</div>
+		</div>
+		<div th:if="${gameState == null}">
+			<form th:action="@{/start}" method="post">
+				<label for="username">Enter your Username:</label> <input
+					type="text" id="username" name="username" required> <label
+					for="maxAttempts">Max Attempts:</label> <input type="number"
+					id="maxAttempts" name="maxAttempts" required>
+				<button type="submit">Start New Game</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
